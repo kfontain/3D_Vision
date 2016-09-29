@@ -8,6 +8,12 @@
 #include <QAction>
 #include <QWidget>
 #include <QPushButton>
+#include <QFileDialog>
+#include <QLabel>
+#include <QImageReader>
+#include <QPixmap>
+#include <QWindow>
+
 
 class MainWindow : public QMainWindow
 {
@@ -15,6 +21,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow();
+    QString chemin;
 
 private:
     void createMenus();
@@ -22,10 +29,18 @@ private:
 
 private slots:
     void about();
+    void open();
+    void openNewWindow();
 
 private:
-    QPushButton *bouton;
     QAction *actionAbout;
+    QAction *actionOpen;
+    QAction *actionQuit;
+    QAction *actionCrop;
+    QLabel *imagedisplay;
+    QImage imageObject;
+    QWindow *mMyNewWindow;
+    QPixmap *pixelmap;
 };
 
 #endif // MAINWINDOW_H
