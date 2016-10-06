@@ -31,12 +31,15 @@ private slots:
     void about();
     void open();
     void openNewWindow();
+    void openNewWindow(QImage img);
+    void split();
 
 private:
     QAction *actionAbout;
     QAction *actionOpen;
     QAction *actionQuit;
     QAction *actionCrop;
+    QAction *actionSplit;
     QLabel *imagedisplay;
     QImage imageObject;
     QWindow *mMyNewWindow;
