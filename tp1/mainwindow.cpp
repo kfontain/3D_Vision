@@ -1,9 +1,14 @@
 #include "mainwindow.h"
-int i=0, j=0;
+
 MainWindow::MainWindow() : QMainWindow()
 {
     createActions();
     createMenus();
+    createStatusBar();
+    imageOpen=false;
+    cropActive=false;
+    setWindowTitle("Projet Vision Robotique 3D");
+
 }
 
 void MainWindow::createActions()
@@ -32,6 +37,11 @@ void MainWindow::createMenus()
     menuEdit->addAction(actionCrop);
 }
 
+void MainWindow::createStatusBar()
+{
+    statusBar()->showMessage(tr("Ready"));
+}
+
 void MainWindow::about()
 {
     QMessageBox::information(this, "About", "Bonjour, ceci est un about random.");
@@ -46,51 +56,31 @@ void MainWindow::open()
     QImageReader reader(file);
     imageObject = reader.read();
     pixelmap = QPixmap::fromImage(imageObject);
+    int newheight = pixelmap.height();                     //Met la mainwindow a la taille de l'image ouverte
+    int newwidth = pixelmap.width();
+    this->setFixedSize(newwidth, newheight);
 
     imagedisplay = new QLabel(this);
     imagedisplay->setGeometry(QRect(0, 25, this->width(), this->height()-25));
     imagedisplay->setPixmap((&pixelmap)->scaled(this->width(), this->height(), Qt::IgnoreAspectRatio));
     imagedisplay->show();
-    i=1;
+    imageOpen=true;
+
+
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event){
-    if(i==1){
+    if(imageOpen){
     imagedisplay->setFixedSize(event->size());
     imagedisplay->setPixmap((&pixelmap)->scaled(this->width(), this->height(), Qt::IgnoreAspectRatio));
     }
 }
 
 
-// TP 2
-
-void MainWindow::mousePressEvent(QMouseEvent *e)
-{
-    int p1x =(e->x()/this->width()*pixelmap.width());
-    int p1y =((e->y()-25)/(this->height()-25)*pixelmap.height());
-    point1.setX(p1x);
-    point1.setY(p1y);
-}
-
-void MainWindow::mouseReleaseEvent(QMouseEvent *e)
-{
-    int p2x =(e->x()/this->width()*pixelmap.width());
-    int p2y =((e->y()-25)/(this->height()-25)*pixelmap.height());
-    point2.setX(p2x);
-    point2.setY(p2y);
-
-    if(j==1){
-
-        QRect rect (point1, point2);
-        QPixmap pixelmap2 = pixelmap.copy(rect);
-        imagedisplay->setPixmap((&pixelmap2)->scaled(this->width(), this->height(), Qt::IgnoreAspectRatio));
-        imagedisplay->adjustSize();
-    }
-}
 
 void MainWindow:: crop()
 {
-    j=1;
+    cropActive=true;
 }
 
 void MainWindow:: split()
@@ -123,8 +113,48 @@ void MainWindow:: openNewWindow(QImage img)
 
     imagedisplay1->show();
     mMyNewWindow->show();
+
 }
 
 
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    originCrop = event->pos();  //Point de depart du crop et du poisitionnement du rectangle de selection
 
+    rubberBand = new QRubberBand(QRubberBand::Rectangle, this); //rectangle de selection
+    rubberBand->setGeometry(QRect(originCrop, QSize()));
+    rubberBand->show();
+    statusBar()->showMessage(tr("Ready to Crop" ));
+}
+
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    rubberBand->setGeometry(QRect(originCrop, event->pos()).normalized()); //Permet de faire evoluer le rectangle de selection en bougeant la souris
+    QToolTip::showText( event->globalPos(), QString("%1,%2")
+                                                 .arg(rubberBand->size().width())
+                                                 .arg(rubberBand->size().height()),this );
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    rubberBand->hide(); //Cache le rectangle de selection quand on lache la souris
+    endCrop = event->pos(); //Coordonnées du dernier point quand on lache la souris
+    if(endCrop.x()>pixelmap.width()){ //Mesures de securitées pour le crop dans le cas ou on sort de la fenetre, je sais pas si c'est necessaire.
+        endCrop.setX(pixelmap.width()); //Une solution optimale serait de limiter le mouvement de la souris a la fenetre
+    }
+    if(endCrop.y()>pixelmap.height()){
+        endCrop.setY(pixelmap.height());
+    }
+
+
+    if(cropActive){
+
+        QRect rect (originCrop, endCrop);
+        QPixmap pixelmap2 = pixelmap.copy(rect);
+        pixelmap= pixelmap2;
+        imagedisplay->setPixmap((&pixelmap2)->scaled(this->width(), this->height(), Qt::IgnoreAspectRatio));
+
+    }
+    cropActive=false;
+}
 
