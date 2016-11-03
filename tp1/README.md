@@ -41,16 +41,3 @@ Utilisation du crop :
 
 Difficultés rencontrées :
 - Aucune en particulier.
-
-***** Rendu pour la séance du 04/11/2016 *****
-
-Rendu le 03/11/2016 à 23:00.
-
-Fait : Linker openCV, tp3, implémentation de la fonction Sobel.
-
-Utilisation de Sobel :
-- Charger une image. Menu > File > Open.
-- Lancer la fonction Sobel. Menu > File > Sobel.
-
-Difficultés rencontrées :
-- Implémentation de la fonction Canny. Des questions à poser.

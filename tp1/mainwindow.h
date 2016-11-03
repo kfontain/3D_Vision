@@ -15,6 +15,10 @@
 #include <QResizeEvent>
 #include <QRubberBand>
 #include <QToolTip>
+#include <iostream>
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/core/core.hpp"
 
 
 /*regles definitions variables:
@@ -35,16 +39,25 @@ private:
     void createActions();
     void resizeEvent ( QResizeEvent * event );
     void openNewWindow(QImage img);
+    void openNewWindow(cv::Mat img, const char* name);
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void createStatusBar();
+    cv::Mat QImage2Mat(QImage *src);
+    QImage mat2QImage(cv::Mat src);
+    cv::Mat blur(cv::Mat src);
 
 private slots:
     void about();
     void open();
     void split();
     void crop();
+    void convert_test(); //QImage to CV::Mat
+    void convert_test2(); //CV::Mat to QImage
+    void blur();
+    void sobel();
+    void canny();
 
 private:
     QAction *actionAbout;
@@ -52,6 +65,12 @@ private:
     QAction *actionQuit;
     QAction *actionSplit;
     QAction *actionCrop;
+    QAction *actionConvertTest; //QImage to CV::Mat
+    QAction *actionBlur;
+    QAction *actionConvertTest2; //CV::Mat to QImage
+    QAction *actionDifference;
+    QAction *actionSobel;
+    QAction *actionCanny;
     QImage imageObject;
     QWindow *mMyNewWindow;
     QLabel *imagedisplay;

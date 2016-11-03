@@ -16,3 +16,8 @@ SOURCES += main.cpp \
     mainwindow.cpp
 
 HEADERS  += mainwindow.h
+
+# The following lines tells Qmake to use pkg-config for opencv
+QT_CONFIG -= no-pkg-config
+CONFIG  += link_pkgconfig
+PKGCONFIG += opencv
