@@ -54,3 +54,16 @@ Utilisation de Sobel :
 
 Difficultés rencontrées :
 - Implémentation de la fonction Canny. Des questions à poser.
+
+***** Rendu pour la séance du 25/11/2016 *****
+
+Rendu le 24/11/2016.
+
+Fait :
+- Version 2 du code. Ajouts de fichiers headers et sources pour rendre le code plus lisible.
+- Ajout de la fonction de détection de features dans une image (utilisant SIFT).
+
+Diffucltés rencontrées/à faire :
+- Réimplémenter la fonction de crop dans la nouvelle version.
+- Documenter plus le code source.
+- La converstion QImage -> cv::Mat n'est pas fonctionnelle pour tous les types. Fonction convert à compléter.
