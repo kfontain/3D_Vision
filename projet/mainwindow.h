@@ -1,22 +1,42 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-
-namespace Ui {
-class MainWindow;
-}
+#include "include.h"
+#include "convert.h"
+#include "edit.h"
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    QString filepath;
+
 private:
-    Ui::MainWindow *ui;
+    void createMenus();
+    void createActions();
+    void openNewWindow(QImage img);
+
+
+    QPixmap pixelmap;
+    QLabel *imagedisplay;
+    QImage imageObject;
+
+    QAction *actionOpen;
+    QAction *actionConvertTest;
+    QAction *actionSplitTest;
+    QAction *actionSobelTest;
+    QAction *actionSiftTest;
+
+private slots:
+    void openFile();
+    void convertTest();
+    void splitTest();
+    void sobelTest();
+    void siftTest();
 };
 
 #endif // MAINWINDOW_H
