@@ -11,6 +11,8 @@
 
 void split(QImage src, cv::Mat* left, cv::Mat* right);
 void sobel(cv::Mat src, cv::Mat* dst);
-void sift(cv::Mat src, cv::Mat* dst);
+void surf(cv::Mat src, cv::Mat* dst);
+void surfMatch(cv::Mat src, cv::Mat src2, cv::Mat *dst);
+
 
 #endif // EDIT_H

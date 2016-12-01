@@ -55,8 +55,8 @@ void sobel(cv::Mat src, cv::Mat *dst)
 
 
 ///Cette fonction permet de détecter les features de l'image src entrée en paramètre.
-///L'image post-sift est sauvegardée dans l'image dst entrée en paramètre.
-void sift(cv::Mat src, cv::Mat *dst)
+///L'image post-surf est sauvegardée dans l'image dst entrée en paramètre.
+void surf(cv::Mat src, cv::Mat *dst)
 {
     cv::Mat tmp;
     cv::cvtColor(src, tmp, CV_BGR2GRAY);
@@ -66,4 +66,60 @@ void sift(cv::Mat src, cv::Mat *dst)
     detector.detect(tmp, keypoints);
 
     cv::drawKeypoints(tmp, keypoints, *dst, cv::Scalar::all(-1), cv::DrawMatchesFlags::DEFAULT);
+}
+
+///Permet de faire l'appariement entre les points d'intérêts entre les 2 images en paramètres src et src2.
+///
+void surfMatch(cv::Mat src, cv::Mat src2, cv::Mat *dst)
+{
+    cv::Mat tmp, tmp2;
+    cv::cvtColor(src, tmp, CV_BGR2GRAY);
+    cv::cvtColor(src2, tmp2, CV_BGR2GRAY);
+
+    int minHessian = 400;
+    cv::SurfFeatureDetector detector(minHessian);
+    std::vector<cv::KeyPoint> keypoints, keypoints2;
+    detector.detect(tmp, keypoints);
+    detector.detect(tmp2, keypoints2);
+
+    cv::SurfDescriptorExtractor extractor;
+    cv::Mat descriptor, descriptor2;
+
+    extractor.compute(tmp, keypoints, descriptor);
+    extractor.compute(tmp2, keypoints2, descriptor2);
+
+    cv::FlannBasedMatcher matcher;
+    std::vector<cv::DMatch> matches;
+    matcher.match(descriptor, descriptor2, matches);
+
+    double maxDist = 0;
+    double minDist = 100;
+
+    for(int i = 0; i < descriptor.rows; i++)
+    {
+        double dist = matches[i].distance;
+        if(dist < minDist) minDist = dist;
+        if(dist > maxDist) maxDist = dist;
+    }
+
+    printf("Max Dist : %f \n", maxDist);
+    printf("Min Dist : %f \n", minDist);
+
+    std::vector<cv::DMatch> goodMatches;
+
+    for( int i = 0; i < descriptor.rows; i++ )
+    {
+        if(matches[i].distance <= cv::max(2*minDist, 0.02))
+        {
+            goodMatches.push_back(matches[i]);
+        }
+    }
+
+    cv::Mat imgMatches;
+    cv::drawMatches(tmp, keypoints, tmp2, keypoints2,
+                goodMatches, imgMatches, cv::Scalar::all(-1), cv::Scalar::all(-1),
+                cv::vector<char>(), cv::DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS);
+
+    *dst = imgMatches;
+
 }

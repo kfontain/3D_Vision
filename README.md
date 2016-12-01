@@ -1,9 +1,6 @@
 Projet Technologique 6 : Vision 3D pour robots
 
-Camille CLAVAUD
-Geoffrey MEILHAN
-Kenji FONTAINE
-Mohamed ALAMI
+Camille CLAVAUD Geoffrey MEILHAN Kenji FONTAINE Mohamed ALAMI
 
 ***** Rendu pour la séance du 30/09/2016 *****
 
@@ -12,10 +9,10 @@ Rendu le 29/09/2016 à ~23:00.
 Fait : Avancer dans le TP1.
 
 Difficultés rencontrées :
-- Affichage d'une image, affichage de menu sous Mac.
-- Difficultés à se répartir le travail.
-- Prise en main du framework difficile.
 
+Affichage d'une image, affichage de menu sous Mac.
+Difficultés à se répartir le travail.
+Prise en main du framework difficile.
 ***** Rendu pour la séance du O7/10/2016 *****
 
 Rendu le O6/10/2016 à 23:15.
@@ -23,11 +20,11 @@ Rendu le O6/10/2016 à 23:15.
 Fait : essayer d'avancer dans le TP2, rendre le code plus lisible.
 
 Difficultés rencontrées :
-- Afficher 2 images dans la fonction split().
-- Difficultés à se répartir le travail.
-- Relativement peu de temps cette semaine.
-- Nous n'avons pas vraiment essayer de faire la fonction crop. (Bloqués à split).
 
+Afficher 2 images dans la fonction split().
+Difficultés à se répartir le travail.
+Relativement peu de temps cette semaine.
+Nous n'avons pas vraiment essayer de faire la fonction crop. (Bloqués à split).
 ***** Rendu pour la séance du 14/10/2016 *****
 
 Rendu le 13/10/2016 à 23:40.
@@ -35,13 +32,13 @@ Rendu le 13/10/2016 à 23:40.
 Fait : Terminer l'implémentation des fonctions split et crop.
 
 Utilisation du crop :
-- Charger une image. Menu > File > Open.
-- Lancer la fonction Crop. Menu > Edit > Crop.
-- Sélectionner la zone à rogner.
 
+Charger une image. Menu > File > Open.
+Lancer la fonction Crop. Menu > Edit > Crop.
+Sélectionner la zone à rogner.
 Difficultés rencontrées :
-- Aucune en particulier.
 
+Aucune en particulier.
 ***** Rendu pour la séance du 04/11/2016 *****
 
 Rendu le 03/11/2016 à 23:00.
@@ -49,21 +46,22 @@ Rendu le 03/11/2016 à 23:00.
 Fait : Linker openCV, tp3, implémentation de la fonction Sobel.
 
 Utilisation de Sobel :
-- Charger une image. Menu > File > Open.
-- Lancer la fonction Sobel. Menu > File > Sobel.
 
+Charger une image. Menu > File > Open.
+Lancer la fonction Sobel. Menu > File > Sobel.
 Difficultés rencontrées :
-- Implémentation de la fonction Canny. Des questions à poser.
 
+Implémentation de la fonction Canny. Des questions à poser.
 ***** Rendu pour la séance du 25/11/2016 *****
 
 Rendu le 24/11/2016.
 
 Fait :
-- Version 2 du code. Ajouts de fichiers headers et sources pour rendre le code plus lisible.
-- Ajout de la fonction de détection de features dans une image (utilisant SIFT).
 
+Version 2 du code. Ajouts de fichiers headers et sources pour rendre le code plus lisible.
+Ajout de la fonction de détection de features dans une image (utilisant SIFT).
 Diffucltés rencontrées/à faire :
-- Réimplémenter la fonction de crop dans la nouvelle version.
-- Documenter plus le code source.
-- La converstion QImage -> cv::Mat n'est pas fonctionnelle pour tous les types. Fonction convert à compléter.
+
+Réimplémenter la fonction de crop dans la nouvelle version.
+Documenter plus le code source.
+La converstion QImage -> cv::Mat n'est pas fonctionnelle pour tous les types. Fonction convert à compléter.

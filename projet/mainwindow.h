@@ -29,14 +29,16 @@ private:
     QAction *actionConvertTest;
     QAction *actionSplitTest;
     QAction *actionSobelTest;
-    QAction *actionSiftTest;
+    QAction *actionSurfTest;
+    QAction *actionSurfMatchTest;
 
 private slots:
     void openFile();
     void convertTest();
     void splitTest();
     void sobelTest();
-    void siftTest();
+    void surfTest();
+    void surfMatchTest();
 };
 
 #endif // MAINWINDOW_H

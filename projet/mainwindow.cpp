@@ -42,7 +42,8 @@ void MainWindow::createMenus()
     menuEdit->addAction(actionConvertTest);
     menuEdit->addAction(actionSplitTest);
     menuEdit->addAction(actionSobelTest);
-    menuEdit->addAction(actionSiftTest);
+    menuEdit->addAction(actionSurfTest);
+    menuEdit->addAction(actionSurfMatchTest);
 
 }
 
@@ -57,9 +58,12 @@ void MainWindow::createActions()
     connect(actionSplitTest, SIGNAL(triggered()), this, SLOT(splitTest()));
     actionSobelTest = new QAction(tr("Sobel test"),this);
     connect(actionSobelTest, SIGNAL(triggered()), this, SLOT(sobelTest()));
-    actionSiftTest = new QAction(tr("Sift test"),this);
-    connect(actionSiftTest, SIGNAL(triggered()), this, SLOT(siftTest()));
+    actionSurfTest = new QAction(tr("Surf test"),this);
+    connect(actionSurfTest, SIGNAL(triggered()), this, SLOT(surfTest()));
+    actionSurfMatchTest = new QAction(tr("Surf Match test"),this);
+    connect(actionSurfMatchTest, SIGNAL(triggered()), this, SLOT(surfMatchTest()));
 }
+
 
 ///Ouvre une nouvelle fenêtre avec comme image celle entrée en paramètre.
 void MainWindow:: openNewWindow(QImage img)
@@ -114,14 +118,30 @@ void MainWindow::sobelTest()
     openNewWindow(result);
 }
 
-///Slot de test pour la fonction Sift
-void MainWindow::siftTest()
+///Slot de test pour la fonction Surf
+void MainWindow::surfTest()
 {
     cv::Mat src = qImage2Mat(imageObject, true);
     cv::Mat tmp;
-    sift(src, &tmp);
+    surf(src, &tmp);
 
     QImage result = mat2QImage(tmp, true);
     openNewWindow(result);
-
 }
+
+void MainWindow::surfMatchTest()
+
+{
+    cv::Mat left, right;
+    split(imageObject, &left, &right);
+    cv::Mat tmp;
+    surfMatch(left, right, &tmp);
+
+    QImage result;
+    result = mat2QImage(tmp, true);
+
+    openNewWindow(result);
+}
+
+
+//EcartCamera * DistFocale / mapDisp(y,x)
