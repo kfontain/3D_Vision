@@ -44,6 +44,8 @@ void MainWindow::createMenus()
     menuEdit->addAction(actionSobelTest);
     menuEdit->addAction(actionSurfTest);
     menuEdit->addAction(actionSurfMatchTest);
+    menuEdit->addAction(actionDispMapTest);
+
 
 }
 
@@ -62,6 +64,8 @@ void MainWindow::createActions()
     connect(actionSurfTest, SIGNAL(triggered()), this, SLOT(surfTest()));
     actionSurfMatchTest = new QAction(tr("Surf Match test"),this);
     connect(actionSurfMatchTest, SIGNAL(triggered()), this, SLOT(surfMatchTest()));
+    actionDispMapTest = new QAction(tr("Disp Map test"),this);
+    connect(actionDispMapTest, SIGNAL(triggered()), this, SLOT(dispMapTest()));
 }
 
 
@@ -130,7 +134,6 @@ void MainWindow::surfTest()
 }
 
 void MainWindow::surfMatchTest()
-
 {
     cv::Mat left, right;
     split(imageObject, &left, &right);
@@ -143,5 +146,17 @@ void MainWindow::surfMatchTest()
     openNewWindow(result);
 }
 
+void MainWindow::dispMapTest()
+{
+    cv::Mat left, right;
+    split(imageObject, &left, &right);
+    cv::Mat tmp;
+    dispMap(left, right, &tmp);
+
+    QImage result;
+    result = mat2QImage(tmp, true);
+
+    openNewWindow(result);
+}
 
 //EcartCamera * DistFocale / mapDisp(y,x)

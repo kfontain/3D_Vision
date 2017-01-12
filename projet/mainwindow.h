@@ -31,6 +31,7 @@ private:
     QAction *actionSobelTest;
     QAction *actionSurfTest;
     QAction *actionSurfMatchTest;
+    QAction *actionDispMapTest;
 
 private slots:
     void openFile();
@@ -39,6 +40,7 @@ private slots:
     void sobelTest();
     void surfTest();
     void surfMatchTest();
+    void dispMapTest();
 };
 
 #endif // MAINWINDOW_H

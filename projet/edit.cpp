@@ -69,7 +69,6 @@ void surf(cv::Mat src, cv::Mat *dst)
 }
 
 ///Permet de faire l'appariement entre les points d'intérêts entre les 2 images en paramètres src et src2.
-///
 void surfMatch(cv::Mat src, cv::Mat src2, cv::Mat *dst)
 {
     cv::Mat tmp, tmp2;
@@ -123,3 +122,38 @@ void surfMatch(cv::Mat src, cv::Mat src2, cv::Mat *dst)
     *dst = imgMatches;
 
 }
+
+//Cette fonction calcule la carte de disparité à partir des images sources en paramètres.
+//src est la première image source.
+//src2 est la deuxième image source.
+//dst est l'image dans laquelle la carte de disparité sera sauvegardée.
+void dispMap(cv::Mat src, cv::Mat src2, cv::Mat *dst)
+{
+    //Convertissement des images en niveau de gris.
+    cv::Mat tmp, tmp2;
+    cv::cvtColor(src, tmp, CV_BGR2GRAY);
+    cv::cvtColor(src2, tmp2, CV_BGR2GRAY);
+
+    //Création des images dans lesquelles les disparités seront sauvegardées.
+    cv::Mat imgDisp16S = cv::Mat(tmp.rows, tmp.cols, CV_16S);
+    cv::Mat imgDisp8U = cv::Mat(tmp.rows, tmp.cols, CV_8UC1);
+
+    cv::StereoBM sbm = cv::StereoBM();
+
+    sbm.operator()(tmp, tmp2, imgDisp16S, CV_16S);
+    double min, max;
+    minMaxLoc(imgDisp16S, &min, &max);
+
+    imgDisp16S.convertTo(imgDisp8U, CV_8UC1, 255/(max - min));
+
+    *dst = imgDisp8U;
+}
+
+
+
+
+
+
+
+
+
