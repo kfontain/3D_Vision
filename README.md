@@ -19,4 +19,18 @@ EcartCamera * DistFocale / mapDisp(y,x)
 Et nous mettons ces valeurs dans chacun des pixel (x,y) pour construire
 la carte de pronfondeur.
 
-Cependant, n'ayant pas accès à ces valeurs nous voyons pas comment faire.
+Cependant, n'ayant pas accès à ces valeurs nous ne voyons pas comment faire.
+
+***** Rendu pour la séance du 20/01/2017 *****
+
+Fait :
+- Ajout d'un nouveau bouton "Disp Map + Invert test",
+appelant la fonction DispMap avant d'inverser la carte obtenue
+afin de se rapprocher de la définition d'une carte de disparité.
+- Ajout de quelques commentaires.
+- Suppression de quelques lignes inutiles.
+
+***** Rendu pour la séance du 27/01/2017 *****
+
+Nous avons installé Unity3D et regarder les langages utilisés (C#, JavaScript)
+ainsi que les fonctionnalités de base.
