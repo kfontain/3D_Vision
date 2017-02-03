@@ -2,25 +2,6 @@ Projet Technologique 6 : Vision 3D pour robots
 
 Camille CLAVAUD Geoffrey MEILHAN Kenji FONTAINE Mohamed ALAMI
 
-***** Rendu pour la séance du 13/01/2017 *****
-
-Fait : Implémentation de l'algorithme de calcul de carte de disparité.
-
-TODO : Implémentation de l'algorithme de calcul de carte de profondeur.
-
-La carte de disparité parait plus sombre que prévu.
-Pour la carte de profondeur, nous avons trouvé la formule suivante :
-EcartCamera * DistFocale / mapDisp(y,x)
-
-- EcartCamera étant l'écart entre nos deux caméras.
-- DistFocale étant la distance focale de nos caméras.
-- mapDisp étant la valeur du pixel de la carte de disparité.
-
-Et nous mettons ces valeurs dans chacun des pixel (x,y) pour construire
-la carte de pronfondeur.
-
-Cependant, n'ayant pas accès à ces valeurs nous ne voyons pas comment faire.
-
 ***** Rendu pour la séance du 20/01/2017 *****
 
 Fait :
@@ -34,3 +15,16 @@ afin de se rapprocher de la définition d'une carte de disparité.
 
 Nous avons installé Unity3D et regarder les langages utilisés (C#, JavaScript)
 ainsi que les fonctionnalités de base.
+
+***** Rendu pour la séance du 03/02/2017 *****
+
+Fait :
+- Implémenter 2 caméras liées sur Unity.
+- Créer un modèle humanoïde sur Unity.
+- Créer un script permettant de déplacer un objet sur Unity. (fichier move.cs)
+- Tester l'algorithme de carte de disparité sur les images obtenues sur Unity.
+Ces images sont visibles dans le dossier "Test".
+
+Todo :
+- Décider d'une distance fixe entre les caméras afin d'implémenter l'algorithme
+calculant la carte de profondeur.
