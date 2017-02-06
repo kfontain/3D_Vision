@@ -1,0 +1,4 @@
+StereoBM parameters :
+- preset = BASIC_PRESET;
+- ndisparities = 16*3;
+- SADWindowSize = 27;
