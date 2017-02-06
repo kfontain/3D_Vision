@@ -26,3 +26,6 @@ HEADERS  += mainwindow.h \
 QT_CONFIG -= no-pkg-config
 CONFIG  += link_pkgconfig
 PKGCONFIG += opencv
+
+# Faire un cas pour les machines du Cremi.
+# /opt/local/stow <- OpenCV là-dedans.

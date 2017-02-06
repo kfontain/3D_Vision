@@ -32,6 +32,7 @@ private:
     QAction *actionSurfTest;
     QAction *actionSurfMatchTest;
     QAction *actionDispMapTest;
+    QAction *actionDispMapInvertTest;
 
 private slots:
     void openFile();
@@ -41,6 +42,7 @@ private slots:
     void surfTest();
     void surfMatchTest();
     void dispMapTest();
+    void dispMapInvertTest();
 };
 
 #endif // MAINWINDOW_H

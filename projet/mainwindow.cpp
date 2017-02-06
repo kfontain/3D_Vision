@@ -45,6 +45,7 @@ void MainWindow::createMenus()
     menuEdit->addAction(actionSurfTest);
     menuEdit->addAction(actionSurfMatchTest);
     menuEdit->addAction(actionDispMapTest);
+    menuEdit->addAction(actionDispMapInvertTest);
 
 
 }
@@ -66,10 +67,13 @@ void MainWindow::createActions()
     connect(actionSurfMatchTest, SIGNAL(triggered()), this, SLOT(surfMatchTest()));
     actionDispMapTest = new QAction(tr("Disp Map test"),this);
     connect(actionDispMapTest, SIGNAL(triggered()), this, SLOT(dispMapTest()));
+    actionDispMapInvertTest = new QAction(tr("Disp Map + Invert test"),this);
+    connect(actionDispMapInvertTest, SIGNAL(triggered()), this, SLOT(dispMapInvertTest()));
 }
 
 
 ///Ouvre une nouvelle fenêtre avec comme image celle entrée en paramètre.
+
 void MainWindow:: openNewWindow(QImage img)
 {
     QWidget *mMyNewWindow = new QWidget();
@@ -133,6 +137,7 @@ void MainWindow::surfTest()
     openNewWindow(result);
 }
 
+///Slot de test pour la fonction SurfMatch
 void MainWindow::surfMatchTest()
 {
     cv::Mat left, right;
@@ -146,6 +151,7 @@ void MainWindow::surfMatchTest()
     openNewWindow(result);
 }
 
+///Slot de test pour la fonction dispMap
 void MainWindow::dispMapTest()
 {
     cv::Mat left, right;
@@ -155,6 +161,24 @@ void MainWindow::dispMapTest()
 
     QImage result;
     result = mat2QImage(tmp, true);
+
+    openNewWindow(result);
+}
+
+///Slot de test pour la fonction dispMap + inversion des couleurs
+void MainWindow::dispMapInvertTest()
+{
+    cv::Mat left, right;
+    split(imageObject, &left, &right);
+    cv::Mat tmp;
+    dispMap(left, right, &tmp);
+
+    cv::Mat tmp2;
+    //Applique un NON logique à chaque bit => Inverse les couleurs
+    cv::bitwise_not(tmp,tmp2);
+
+    QImage result;
+    result = mat2QImage(tmp2, true);
 
     openNewWindow(result);
 }
