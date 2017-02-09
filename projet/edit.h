@@ -15,6 +15,7 @@ void sobel(cv::Mat src, cv::Mat* dst);
 void surf(cv::Mat src, cv::Mat* dst);
 void surfMatch(cv::Mat src, cv::Mat src2, cv::Mat *dst);
 void dispMap(cv::Mat src, cv::Mat src2, cv::Mat *dst);
+void depthMap(cv::Mat src, cv::Mat *dst);
 
 
 #endif // EDIT_H

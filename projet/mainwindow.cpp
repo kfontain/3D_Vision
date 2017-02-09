@@ -46,6 +46,7 @@ void MainWindow::createMenus()
     menuEdit->addAction(actionSurfMatchTest);
     menuEdit->addAction(actionDispMapTest);
     menuEdit->addAction(actionDispMapInvertTest);
+    menuEdit->addAction(actionDepthMapTest);
 
 
 }
@@ -53,23 +54,26 @@ void MainWindow::createMenus()
 ///Initialise les actions contenues dans les menus de la fenêtre principale.
 void MainWindow::createActions()
 {
-    actionOpen = new QAction(tr("Open File"),this);
+    actionOpen = new QAction(tr("Open File"), this);
     connect(actionOpen, SIGNAL(triggered()), this, SLOT(openFile()));
-    actionConvertTest = new QAction(tr("Convert QImage to CV::Mat"),this);
+    actionConvertTest = new QAction(tr("Convert QImage to CV::Mat"), this);
     connect(actionConvertTest, SIGNAL(triggered()), this, SLOT(convertTest()));
-    actionSplitTest = new QAction(tr("Split test"),this);
+    actionSplitTest = new QAction(tr("Split test"), this);
     connect(actionSplitTest, SIGNAL(triggered()), this, SLOT(splitTest()));
-    actionSobelTest = new QAction(tr("Sobel test"),this);
+    actionSobelTest = new QAction(tr("Sobel test"), this);
     connect(actionSobelTest, SIGNAL(triggered()), this, SLOT(sobelTest()));
-    actionSurfTest = new QAction(tr("Surf test"),this);
+    actionSurfTest = new QAction(tr("Surf test"), this);
     connect(actionSurfTest, SIGNAL(triggered()), this, SLOT(surfTest()));
-    actionSurfMatchTest = new QAction(tr("Surf Match test"),this);
+    actionSurfMatchTest = new QAction(tr("Surf Match test"), this);
     connect(actionSurfMatchTest, SIGNAL(triggered()), this, SLOT(surfMatchTest()));
-    actionDispMapTest = new QAction(tr("Disp Map test"),this);
+    actionDispMapTest = new QAction(tr("Disp Map test"), this);
     connect(actionDispMapTest, SIGNAL(triggered()), this, SLOT(dispMapTest()));
-    actionDispMapInvertTest = new QAction(tr("Disp Map + Invert test"),this);
+    actionDispMapInvertTest = new QAction(tr("Disp Map + Invert test"), this);
     connect(actionDispMapInvertTest, SIGNAL(triggered()), this, SLOT(dispMapInvertTest()));
+    actionDepthMapTest = new QAction(tr("Depth Map test"), this);
+    connect(actionDepthMapTest, SIGNAL(triggered()), this, SLOT(depthMapTest()));
 }
+
 
 
 ///Ouvre une nouvelle fenêtre avec comme image celle entrée en paramètre.
@@ -179,6 +183,25 @@ void MainWindow::dispMapInvertTest()
 
     QImage result;
     result = mat2QImage(tmp2, true);
+
+    openNewWindow(result);
+}
+
+void MainWindow::depthMapTest()
+{
+    cv::Mat left, right;
+    split(imageObject, &left, &right);
+    cv::Mat tmp, tmp2;
+    dispMap(left, right, &tmp);
+
+    //Applique un NON logique à chaque bit => Inverse les couleurs
+    cv::bitwise_not(tmp,tmp2);
+
+    cv::Mat depth;
+    depthMap(tmp2, &depth);
+
+    QImage result;
+    result = mat2QImage(depth, true);
 
     openNewWindow(result);
 }

@@ -155,6 +155,33 @@ void dispMap(cv::Mat src, cv::Mat src2, cv::Mat *dst)
 }
 
 
+///Cette fonction calcule la carte de profondeur à partir de la carte de disparité entrée en paramètre.
+///src est la carte de disparité en entrée, doit être en niveau de gris.
+///dst est l'image dans laquelle la carte de profondeur sera sauvegardée.
+///Formule utilisée : EcartCamera * DistFocale / mapDisp(y,x)
+void depthMap(cv::Mat src, cv::Mat *dst)
+{
+    int rows = src.rows;
+    int cols = src.cols;
+
+    //Valeurs prises au hasard pour l'instant.
+    int ecart = 50;
+    int focale = 100;
+
+    cv::Mat tmp = cv::Mat(rows, cols, CV_8UC1);
+
+    for (int j = 0; j < cols ; j++)
+    {
+        for (int i = 0; i < rows ; i++)
+        {
+            tmp.at<uchar>(i, j) = (ecart * focale) / (src.at<uchar>(i, j) +1);
+        }
+    }
+
+    *dst = tmp;
+}
+
+
 
 
 
