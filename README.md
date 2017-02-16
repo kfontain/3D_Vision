@@ -3,12 +3,6 @@ Projet Technologique 6 : Vision 3D pour robots
 Camille CLAVAUD Geoffrey MEILHAN Kenji FONTAINE Mohamed ALAMI
 
 -----
-Rendu pour la séance du 27/01/2017
-
-Nous avons installé Unity3D et regarder les langages utilisés (C#, JavaScript)
-ainsi que les fonctionnalités de base.
-
------
 Rendu pour la séance du 03/02/2017
 
 Fait :
@@ -23,7 +17,7 @@ Todo :
 calculant la carte de profondeur.
 
 -----
-Rendu pour la séance du 10/02/017
+Rendu pour la séance du 10/02/2017
 
 Fait :
 - Faire des tests de cartes de disparités sur différentes distance sur Unity.
@@ -37,4 +31,17 @@ Todo :
 - Décider des paramètres de la formule de calcul de la carte de profondeur
 (écart caméra, distance focale, etc...).
 - Améliorer l'algorithme de calcul de la carte de profondeur en évitant les
-erreurs (division par 0). 
+erreurs (division par 0).
+
+-----
+Rendu pour la séance du 17/02/2017
+
+Fait :
+- Regarder les problèmes présents sur les images. (module calib3d)
+Les images doivent être sur le même plan vertical.
+La caméra nécessite une calibration. Détermination des paramètres de la caméra ?
+en utilisant des échequiers.
+Corriger la distorition crée par la caméra. (lens distortion)
+
+Todo :
+- Implémenter les fonctions liées à la calibration. (beaucoup d'arguments...)
