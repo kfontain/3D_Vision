@@ -1,7 +1,7 @@
 ///Ce code a été grandement inspiré du code disponible à l'adresse suivante : https://github.com/dbzhang800/QtOpenCV
 ///Certaines images du dossier STEREO ne sont pas bien converties du format QImage à cv::Mat. Fonction à compléter.
 
-#include "convert.h"
+#include "headers/convert.h"
 
 QImage mat2QImage(cv::Mat &mat, QImage::Format format)
 {

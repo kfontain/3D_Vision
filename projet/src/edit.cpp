@@ -1,5 +1,5 @@
-#include "edit.h"
-#include "convert.h"
+#include "headers/edit.h"
+#include "headers/convert.h"
 
 ///Cette fonction permet de couper l'image src entrée en paramètre en deux, au milieu.
 ///Les demi-images ainsi obtenues seront mises dans les paramètres left et right respectivement.
@@ -140,8 +140,8 @@ void dispMap(cv::Mat src, cv::Mat src2, cv::Mat *dst)
 
     //Création d'un StereoBM
     int preset = cv::StereoBM::BASIC_PRESET;
-    int ndisparities = 16*2;
-    int SADWindowSize = 21;
+    int ndisparities = 16 * 2;
+    int SADWindowSize = 31;
 
     cv::StereoBM sbm = cv::StereoBM(preset, ndisparities, SADWindowSize);
 

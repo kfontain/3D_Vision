@@ -34,6 +34,8 @@ private:
     QAction *actionDispMapTest;
     QAction *actionDispMapInvertTest;
     QAction *actionDepthMapTest;
+    QAction *actionRobotTest;
+
 
 private slots:
     void openFile();
@@ -45,6 +47,8 @@ private slots:
     void dispMapTest();
     void dispMapInvertTest();
     void depthMapTest();
+    void robotTest();
+
 };
 
 #endif // MAINWINDOW_H

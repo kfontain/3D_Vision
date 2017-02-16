@@ -12,15 +12,17 @@ TARGET = projet
 TEMPLATE = app
 
 
-SOURCES += main.cpp \
-        mainwindow.cpp \
-    convert.cpp \
-    edit.cpp
+SOURCES += src/main.cpp \
+           src/mainwindow.cpp \
+           src/convert.cpp \
+           src/edit.cpp \
+           src/calib.cpp
 
-HEADERS  += mainwindow.h \
-    convert.h \
-    include.h \
-    edit.h
+HEADERS  += headers/mainwindow.h \
+            headers/convert.h \
+            headers/include.h \
+            headers/edit.h \
+            headers/calib.h
 
 # The following lines tells Qmake to use pkg-config for opencv
 QT_CONFIG -= no-pkg-config
