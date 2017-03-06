@@ -36,7 +36,7 @@ public class getPic : MonoBehaviour {
 
 				// Write to file
 				byte[] bytes = texture.EncodeToPNG ();
-				System.IO.File.WriteAllBytes ("/Users/kenjif/Documents/cours/projetCV/3D_Vision/unity/pics/cam" + j + "-dist" + i + ".png", bytes);
+				System.IO.File.WriteAllBytes ("/Users/kenjif/Documents/cours/projetCV/3D_Vision/projet/projet.app/Contents/MacOS/source/cam" + j + "-dist" + i + ".png", bytes);
 
 				// Clean up the used texture
 				Destroy (texture);

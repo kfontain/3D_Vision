@@ -36,7 +36,9 @@ Todo :
 Rendu pour la séance du 03/03/2017
 
 Fait :
-- Créer un script permettant l'acquisition d'image.
+- Créer un script permettant l'acquisition d'une image. Le résultat est le
+fichier "test.png". Notre algorithme de calcul de carte de disparité prend une
+"double-image" en paramètre. (comme l'image "test.png")
 
 Todo :
 - Automatiser l'acquisition d'image.

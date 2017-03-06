@@ -1,13 +1,14 @@
 #include "headers/mainwindow.h"
 #include "headers/include.h"
 #include <QApplication>
+#include <string>
+#include <sstream>
 
 int main(int argc, char *argv[])
 {
 
 
-    if (argc == 1)
-    {
+    if (argc == 1) {
         QApplication a(argc, argv);
         MainWindow w;
         w.show();
@@ -15,19 +16,35 @@ int main(int argc, char *argv[])
         return a.exec();
     }
 
-    if (argc == 3)
-    {
-    //param
-    cv::Mat left = cv::imread(argv[1]);
-    cv::Mat right = cv::imread(argv[2]);
+    if (argc == 2) {
 
-    cv::Mat result;
+        //fichier : camX-distY.png
 
-    dispMap(left, right, &result);
+        for (int j = 0 ; j < 3 ; j++) {
+            for (int i = 0 ; i < 5 ; i++) {
+                std::ostringstream ossI, ossO;
+                ossI << "source/cam" << j << "-dist" << i << ".png";
+                ossO << "result/cam" << j << "-dist" << i << ".png";
+                std::string in = ossI.str();
+                std::string out = ossO.str();
 
-    cv::imwrite("filename.jpg", result); //incrémenter le nom du fichier
-    //automatiser les SS sur Unity.
-    return 0;
+                //fichier en entrée
+                cv::Mat src = cv::imread(in);
+                QImage cnvt = mat2QImage(src, true);
+
+                cv::Mat left, right;
+                split(cnvt, &left, &right);
+                cv::Mat tmp;
+                dispMap(left, right, &tmp);
+                cv::Mat result;
+                //Applique un NON logique à chaque bit => Inverse les couleurs
+                cv::bitwise_not(tmp, result);
+
+                //fichier sortant
+                cv::imwrite(out, result);
+            }
+        }
+        return 0;
     }
 
 }
