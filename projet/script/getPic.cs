@@ -22,7 +22,7 @@ public class getPic : MonoBehaviour {
 	}
 
 	private IEnumerator SS() {
-		Vector3 tmp = GameObject.FindGameObjectWithTag ("bob").transform.position;
+		Vector3 initial = GameObject.FindGameObjectWithTag ("bob").transform.position;
 		for (int j = 0; j < 3; j++) {
 			for (int i = 0; i < 5; i++) {
 				// Wait untill we actually rendered
@@ -36,7 +36,7 @@ public class getPic : MonoBehaviour {
 
 				// Write to file
 				byte[] bytes = texture.EncodeToPNG ();
-				System.IO.File.WriteAllBytes ("/Users/kenjif/Documents/cours/projetCV/3D_Vision/projet/projet.app/Contents/MacOS/source/cam" + j + "-dist" + i + ".png", bytes);
+				System.IO.File.WriteAllBytes ("/Users/kenjif/Documents/cours/projetCV/Vision3D/projet/projet.app/Contents/MacOS/source/cam" + j + "-dist" + i + ".png", bytes);
 
 				// Clean up the used texture
 				Destroy (texture);
@@ -45,9 +45,9 @@ public class getPic : MonoBehaviour {
 				move ("bob", 'z', 1);
 			}
 			// reset bob to initial position and move each camera
-			reset ("bob", tmp);
-			move ("camera_left" , 'x', -0.05f);
-			move ("camera_right", 'x',  0.05f);
+			reset ("bob", initial);
+			move ("camera_left" , 'x', -0.02f);
+			move ("camera_right", 'x',  0.02f);
 		}
 	}
 
