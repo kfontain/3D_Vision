@@ -23,8 +23,8 @@ int main(int argc, char *argv[])
         for (int j = 0 ; j < 3 ; j++) {
             for (int i = 0 ; i < 5 ; i++) {
                 std::ostringstream ossI, ossO;
-                ossI << "source/cam" << j << "-dist" << i << ".png";
-                ossO << "result/cam" << j << "-dist" << i << ".png";
+                ossI << "source/cam" << j << "-dist" << i << ".png"; //path fichier entrant
+                ossO << "result/cam" << j << "-dist" << i << ".png"; //path fichier sortant
                 std::string in = ossI.str();
                 std::string out = ossO.str();
 
