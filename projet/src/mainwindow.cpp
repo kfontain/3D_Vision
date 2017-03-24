@@ -47,8 +47,7 @@ void MainWindow::createMenus()
     menuEdit->addAction(actionDispMapTest);
     menuEdit->addAction(actionDispMapInvertTest);
     menuEdit->addAction(actionDepthMapTest);
-    menuEdit->addAction(actionRobotTest);
-
+    menuEdit->addAction(actionSGBM);
 
 }
 
@@ -73,8 +72,8 @@ void MainWindow::createActions()
     connect(actionDispMapInvertTest, SIGNAL(triggered()), this, SLOT(dispMapInvertTest()));
     actionDepthMapTest = new QAction(tr("Depth Map test"), this);
     connect(actionDepthMapTest, SIGNAL(triggered()), this, SLOT(depthMapTest()));
-    actionRobotTest = new QAction(tr("Robot test"), this);
-    connect(actionRobotTest, SIGNAL(triggered()), this, SLOT(robotTest()));
+    actionSGBM = new QAction(tr("SGBM test"), this);
+    connect(actionSGBM, SIGNAL(triggered()), this, SLOT(SGBMtest()));
 
 }
 
@@ -210,24 +209,9 @@ void MainWindow::depthMapTest()
     openNewWindow(result);
 }
 
-void MainWindow::robotTest()
+void MainWindow::SGBMtest()
 {
-    cv::Mat left, right;
-    left = cv::imread("./gauche.png");
-    right = cv::imread("./droite.png");
-
-    cv::Mat tmp, tmp2;
-    dispMap(left, right, &tmp);
-
-    //Applique un NON logique à chaque bit => Inverse les couleurs
-    cv::bitwise_not(tmp,tmp2);
-
-    QImage result;
-    result = mat2QImage(tmp2, true);
-
-    openNewWindow(result);
-
+    dispSGBM();
 }
-
 
 //EcartCamera * DistFocale / mapDisp(y,x)

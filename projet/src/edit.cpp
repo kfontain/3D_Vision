@@ -140,8 +140,8 @@ void dispMap(cv::Mat src, cv::Mat src2, cv::Mat *dst)
 
     //Création d'un StereoBM
     int preset = cv::StereoBM::BASIC_PRESET;
-    int ndisparities = 16*2;
-    int SADWindowSize = 25;
+    int ndisparities = 16*5; //multiple de 16
+    int SADWindowSize = 19; //impair
 
     cv::StereoBM sbm = cv::StereoBM(preset, ndisparities, SADWindowSize);
 

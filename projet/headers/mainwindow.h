@@ -4,6 +4,7 @@
 #include "include.h"
 #include "convert.h"
 #include "edit.h"
+#include "sgbm.h"
 
 class MainWindow : public QMainWindow
 {
@@ -34,7 +35,7 @@ private:
     QAction *actionDispMapTest;
     QAction *actionDispMapInvertTest;
     QAction *actionDepthMapTest;
-    QAction *actionRobotTest;
+    QAction *actionSGBM;
 
 
 private slots:
@@ -47,7 +48,7 @@ private slots:
     void dispMapTest();
     void dispMapInvertTest();
     void depthMapTest();
-    void robotTest();
+    void SGBMtest();
 
 };
 
