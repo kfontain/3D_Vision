@@ -80,7 +80,6 @@ void MainWindow::createActions()
 
 
 ///Ouvre une nouvelle fenêtre avec comme image celle entrée en paramètre.
-
 void MainWindow:: openNewWindow(QImage img)
 {
     QWidget *mMyNewWindow = new QWidget();
@@ -97,7 +96,6 @@ void MainWindow:: openNewWindow(QImage img)
 
     imagedisplay->show();
     mMyNewWindow->show();
-
 }
 
 ///Slot de test pour la fonction convert.
