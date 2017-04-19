@@ -16,6 +16,6 @@ void surf(cv::Mat src, cv::Mat* dst);
 void surfMatch(cv::Mat src, cv::Mat src2, cv::Mat *dst);
 void dispMap(cv::Mat src, cv::Mat src2, cv::Mat *dst);
 void depthMap(cv::Mat src, cv::Mat *dst);
-
+double average(cv::Mat src);
 
 #endif // EDIT_H

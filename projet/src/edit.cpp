@@ -161,12 +161,15 @@ void dispMap(cv::Mat src, cv::Mat src2, cv::Mat *dst)
 ///Formule utilisée : EcartCamera * DistFocale / mapDisp(y,x)
 void depthMap(cv::Mat src, cv::Mat *dst)
 {
+    //EcartCamera * DistFocale / mapDisp(y,x)
+
     int rows = src.rows;
     int cols = src.cols;
 
     //Valeurs prises au hasard pour l'instant.
-    int ecart = 50;
-    int focale = 100;
+    double ecart = 70; // écart caméra : 70mm
+    double focale = 3.5; // focal caméra : 3.5mm
+    double sensorSize = 6; // 6mm
 
     cv::Mat tmp = cv::Mat(rows, cols, CV_8UC1);
 
@@ -174,17 +177,36 @@ void depthMap(cv::Mat src, cv::Mat *dst)
     {
         for (int i = 0; i < rows ; i++)
         {
-            tmp.at<uchar>(i, j) = (ecart * focale) / (src.at<uchar>(i, j) +1);
+            tmp.at<uchar>(i, j) = (ecart * focale) / (src.at<uchar>(i, j) * sensorSize / cols);
         }
     }
 
     *dst = tmp;
 }
 
+/// Cette fonction calcule la moyenne de la valeur des pixels dans la zone jambe de l'image en entrée.
+/// src : image en entrée.
+double average(cv::Mat src)
+{
+    int rows = src.rows;
+    int cols = src.cols;
+    int pixel = 0;
+    int tmp;
+    double average = 0;
 
+    for (int j = 0; j < 2*rows / 3 ; j++) {
+        for (int i = cols/4; i < 3*cols / 4 ; i++) {
+            tmp = src.at<uchar>(i, j);
+            if (tmp != 0) {
+                average += src.at<uchar>(i, j);
+                pixel++;
+            }
+        }
+    }
 
-
-
+    average = average / (pixel);
+    return average;
+}
 
 
 
