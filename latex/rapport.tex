@@ -1,0 +1,95 @@
+\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[frenchb]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{minted} %compiler avec la commande -shell-escape
+\usepackage{graphicx}
+
+%% Todo List
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\setlength{\parskip}{.5em}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%-------------------------------------------------------------------------------
+% TITLE PAGE
+%-------------------------------------------------------------------------------
+
+\title
+{
+	\LARGE{Projet Technologique}
+	\HRule \\ [0.5cm]
+	\LARGE \textbf{\uppercase{Vision Stéréoscopique}}
+	\HRule \\ [0.5cm]
+}
+
+\author{Geoffrey MEILHAN \\ Mohamed ALAMI \\ Kenji FONTAINE}
+
+\begin{document}
+
+\null  % Empty line
+\nointerlineskip  % No skip for prev line
+\vfill
+\let\snewpage \newpage
+\let\newpage \relax
+\maketitle
+\let \newpage \snewpage
+\vfill
+\break % page break
+
+%-------------------------------------------------------------------------------
+% Table of Contents
+%-------------------------------------------------------------------------------
+
+\tableofcontents
+\newpage
+
+%-------------------------------------------------------------------------------
+% Introduction
+%-------------------------------------------------------------------------------
+
+\section{Description du projet}
+La stéréoscopie est un ensemble de techniques visant à créer ou améliorer la
+perception de relief à partir de deux images planes.
+
+Le projet consiste à implémenter un module permettant d'évaluer une distance à
+partir de deux images planes en entrée.
+
+\section{Domaine : Vision stéréoscopique}
+
+I tried so hard
+
+\section{Cahier des charges}
+
+And got so far
+
+\section{Architecture du code}
+
+But in the end
+
+\section{Tests}
+
+It doesn't even matter
+
+\section{Conclusion}
+
+OPPA GANGNAM STYLE
+
+%-------------------------------------------------------------------------------
+% Architecture
+%-------------------------------------------------------------------------------
+
+\end{document}
