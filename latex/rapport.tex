@@ -95,10 +95,60 @@ On trouve de nombreux domaines d'application dont les suivants :
 And got so far
 
 %-------------------------------------------------------------------------------
-% Architecture du code
+% Architecture du code QT CV
 %-------------------------------------------------------------------------------
 
-\section{Architecture du code}
+\section{Architecture du code : partie QT et OpenCV}
+
+\subsubsection*{convert.cpp convert.h}
+
+Ces fichiers permettent de convertir des images stockées sous le format d'openCV
+(cv::Mat) en image sous format QT(QImage) et inversement. Il existe deux fonctions
+principales : \textbf{mat2QImage} et \textbf{qImage2Mat}.
+
+\subsubsection*{edit.cpp edit.h}
+
+Ces fichiers forment le "core" de notre module. Sont incluent la plupart des
+algorithmes utilisés lors des calculs de carte de disparité ou de profondeur,
+de détection de bords, de détections de points d'intérêt, etc...
+
+
+\textbf{split :} Cette fonction permet de séparer verticalement une image en
+entrée, en deux images de même taille. Elle prend en entrée une image de type
+QImage. Cette QImage sera coupée en deux et chaque partie ainsi obtenue sera
+respectivement stockée dans les cv::Mat dont les adresse sont données en paramètres.
+
+
+\textbf{sobel :} Cette fonction permet de détecter les bords d'une image. Elle
+prend en entrée une image de type cv::Mat. la fonction va effectuer sur l'image
+source une détection de bords, puis stockera le résultat ainsi obtenu dans une
+autre image cv::Mat dont l'adresse est donnée en tant que paramètre.
+
+
+\textbf{surf et surfmatch :} Ces deux fonctions permettent d'effectuer une détection
+de points d'intérêts. La fonction \textbf{surf} prend une seule image de type
+cv::Mat en entrée. Elle va détecter les points d'intérêt sur l'image en entrée puis
+les mettre en valeur. Le résultat obtenu sera stockée dans une autre image cv::Mat
+dont l'adresse est donnée en tant que paramètre.
+
+
+La fonction \textbf{surfMath} fait la même chose mais avec 2 images en entrée,
+toujours de type cv::Mat. Elle va, en plus de la détection de points d'intérêts,
+effectuer une mise en correspondance des points d'intérêts entre eux. Le résultat
+obtenu sera stocké dans une cv::Mat de destination dont l'adresse est en paramètre
+de la fonction.
+
+
+\textbf{dispMap :} Cette fonction permet de calculer une carte de disparité à
+partir de deux images cv::Mat en entrée. Elle fait appel à l'algorithme
+\textbf{StereoBM} de la bibliothèque \textbf{OpenCV}. La carte de disparité ainsi
+obtenue est stockée dans une image cv::Mat dont l'adresse est donnée en paramètre.
+
+%-------------------------------------------------------------------------------
+% Architecture du code Unity
+%-------------------------------------------------------------------------------
+
+\section{Architecture du code : partie Unity}
 
 But in the end
 
@@ -107,6 +157,13 @@ But in the end
 %-------------------------------------------------------------------------------
 
 \section{Tests}
+
+- ouvrir une image
+- détection de bords
+- split
+- depth/disp map
+- unity (scripts)
+- 
 
 It doesn't even matter
 
