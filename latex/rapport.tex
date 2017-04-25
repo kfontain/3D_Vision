@@ -100,12 +100,14 @@ And got so far
 
 \section{Architecture du code : partie QT et OpenCV}
 
+%%%%% CONVERT %%%%%
 \subsubsection*{convert.cpp convert.h}
 
 Ces fichiers permettent de convertir des images stockées sous le format d'openCV
 (cv::Mat) en image sous format QT(QImage) et inversement. Il existe deux fonctions
 principales : \textbf{mat2QImage} et \textbf{qImage2Mat}.
 
+%%%%% EDIT %%%%%
 \subsubsection*{edit.cpp edit.h}
 
 Ces fichiers forment le "core" de notre module. Sont incluent la plupart des
@@ -144,6 +146,23 @@ partir de deux images cv::Mat en entrée. Elle fait appel à l'algorithme
 \textbf{StereoBM} de la bibliothèque \textbf{OpenCV}. La carte de disparité ainsi
 obtenue est stockée dans une image cv::Mat dont l'adresse est donnée en paramètre.
 
+%%%%% MAIN %%%%%
+\subsubsection*{main.cpp}
+
+Il s'agit du code exécuté lors du lancement du programme. On distingue 2 parties.
+Une première partie avec GUI correspond au code généré par défaut par QT.
+Elle permet de lancer le programme avec l'interface graphique.
+
+\begin{minted}{cpp}
+int main(int argc, char *argv[])
+{
+	QApplication a(argc, argv);
+	MainWindow w;
+	w.show();
+
+	return a.exec();
+}
+\end{minted}
 %-------------------------------------------------------------------------------
 % Architecture du code Unity
 %-------------------------------------------------------------------------------
@@ -163,7 +182,7 @@ But in the end
 - split
 - depth/disp map
 - unity (scripts)
-- 
+-
 
 It doesn't even matter
 
