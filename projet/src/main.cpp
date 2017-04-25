@@ -5,7 +5,7 @@
 #include <string>
 #include <sstream>
 
-void disp(cv::Mat src, cv::Mat src2, cv::Mat *dst, int ndisparities, int SADWindowSize)
+/*void disp(cv::Mat src, cv::Mat src2, cv::Mat *dst, int ndisparities, int SADWindowSize)
 {
     //Convertissement des images en niveau de gris.
     cv::Mat tmp, tmp2;
@@ -28,7 +28,7 @@ void disp(cv::Mat src, cv::Mat src2, cv::Mat *dst, int ndisparities, int SADWind
     imgDisp16S.convertTo(imgDisp8U, CV_8UC1, 255/(max - min));
 
     *dst = imgDisp8U;
-}
+}*/
 
 
 int main(int argc, char *argv[])
@@ -74,7 +74,9 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    if (atoi(argv[1]) == 1) {
+}
+
+    /*if (atoi(argv[1]) == 1) {
         printf("bonjour\n");
         for (int j = 4 ; j < 8 ; j++) {
             for (int i = 0 ; i < 4 ; i++) {
@@ -125,4 +127,4 @@ int main(int argc, char *argv[])
             }
         }
     }
-}
+} */
