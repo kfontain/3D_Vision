@@ -94,6 +94,41 @@ On trouve de nombreux domaines d'application dont les suivants :
 
 And got so far
 
+\subsection{Besoins fonctionnels}
+
+\subsubsection{QT/OpenCV}
+-split une image
+-detection de bords
+-carte de disparitée
+-carte de profondeur
+-convertir une Qimage en cvMat et inverse
+-avoir une fenetre permettant de modifier une image avec les differentes fonctionnalitées implementées
+
+\subsubsection{Unity}
+
+-créer un environnement proche de la réalitée
+-Déplacer Bob dans l'environnement
+-Obtenir des images stereoscopiques proche du cas reel
+
+
+\subsubsection{Robot}
+-Traiter une image en carte de disparitée
+-ET C EST TOUT PARCEQU ON PEUT RIEN FAIRE SUR LE ROBOT
+
+\subsection{Besoins non fonctionnels}
+
+\subsubsection{QT/Opencv}
+-robuste?
+-rapide?
+
+\subsubsection{Unity}
+
+
+\subsubsection{Robot}
+-Traiter x images/sec pour reduire les erreurs possibles
+-
+
+
 %-------------------------------------------------------------------------------
 % Architecture du code QT CV
 %-------------------------------------------------------------------------------
@@ -163,6 +198,33 @@ int main(int argc, char *argv[])
 	return a.exec();
 }
 \end{minted}
+
+Une deuxième partie permet d'executer des parties différentes du code en fonction de l'argument rentré lors de l'appel du programme. Si l'appel au programme se fait par la commande:
+\begin{minted}{bash}
+$ ./projet 0
+\end{minted}
+Alors le programme va traiter toutes les images dans les sous-dossiers écrits en dur dans le code, dans ce cas précis il récupère les images dans le dossier source/cam et écrit dans le dossier result/cam avec l'appel suivant:
+\begin{minted}{cpp}
+for (int j = 0 ; j < 3 ; j++) {
+  for (int i = 0 ; i < 5 ; i++) {
+    std::ostringstream ossI, ossO;
+    ossI << "source/cam" << j << "-dist" << i << ".png"; //path fichier entrant
+    ossO << "result/cam" << j << "-dist" << i << ".png"; //path fichier sortant
+\end{minted}
+Le nombre d'images traitée est i*j et est rentré en dur dans le code. Cette partie a été écrite pour faciliter le traitement d'un grand nombre d'images, afin de tester les cartes de profondeur sur diverses situations.
+
+Une troisième partie très similaire à celle décrite plus haut, à la différence pret que les images en entrée sont au nombre de deux et ont déjà était split. L'implémentation est la même avec la quantitée d'images écrite en dur dans le code, tout comme les dossiers contenant les images. L'appel se fait par:
+\begin{minted}{bash}
+$ ./projet 1
+\end{minted}
+
+Enfin un dernier appel au programme peut être fait permettant de tester plusieurs valeurs de SAD  et de ... pour un image rentré dans le code. Celà nous a permis de faire des tests sur les valeurs optimales de StereoBM sur une certaine image, avant notre implémentation des trackbars. L'appel se fait par:
+\begin{minted}{bash}
+$ ./projet 2
+\end{minted}
+
+
+
 %-------------------------------------------------------------------------------
 % Architecture du code Unity
 %-------------------------------------------------------------------------------
@@ -184,7 +246,33 @@ But in the end
 - unity (scripts)
 -
 
-It doesn't even matter
+I didn't went to Japan
+
+Nous n'avons pas écrit de fonction permettant de tester les différentes fonctionnalitées de notre programme, même si on peut assimiler les différents appel à notre programme avec les arguments "0", "1" ou "2" comme des tests pour les fonctionnalitées suivantes:
+\begin{itemize}
+\item Ouvrir une image
+\item Convertir une Qimage en cvMat et l'opération inverse
+\item Split une image en deux images de même résolution afin de les traiter
+\item Obtenir une carte de disparitée
+\item Ouvrir une nouvelle fenetre
+
+\end{itemize}
+
+
+Nous avons cependant testé toutes les fonctionnalitées que notre programme est censé contenir dans le cahier des charges.
+
+%-------------------------------------------------------------------------------
+% Problèmes rencontrés
+%-------------------------------------------------------------------------------
+
+\section{Problèmes rencontrés}
+
+\subsection{Carte de disparitée}
+
+Afin de traiter la carte de disparitée, nous avons dans un premier temps utiliser l'algorithme StereoBM. L'appel à celui-ci sur les images tests fournis par l'enseignant nous retournait un résultat satisfaisant lorsque nous n'utilisions aucun paramètre. Nous avons donc garder cette implémentation naive(pas sur pour cet adjectif) de StereoBM.
+
+Lorsque nous en avons du traiter les images issues du robot, les valeurs par défaut de cet algorithme ne nous donnait pas de résultat concluant. Nous avons donc eu besoin d'implémenter une variation des paramètre de StereoBM dans notre code, afin de mieux controller le résultat. Après avoir essayer pendant plusieurs séances d'améliorer les cartes de profondeur avec cette méthode, nous avons abandonner au profit de l'utilisation de SteroSGBM. Ces deux algorithmes étant similaire dans leur implémentation, nous n'avons pas eu besoin de beaucoup de temps pour adapter notre programme. Nous avons très rapidement obtenu un meilleur résultat avec beaucoup moins d'effort.
+
 
 %-------------------------------------------------------------------------------
 % Conclusion
@@ -192,7 +280,7 @@ It doesn't even matter
 
 \section{Conclusion}
 
-OPPA GANGNAM STYLE
+Grace a ce projet nous avons pu en apprendre plus sur un domaine qui nous était peu connu en la reconaissance visuelle, ainsi qu'ameliorer nos connaissances en C++.
 
 %-------------------------------------------------------------------------------
 % In the end
