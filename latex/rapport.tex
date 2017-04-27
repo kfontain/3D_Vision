@@ -92,84 +92,39 @@ On trouve de nombreux domaines d'application dont les suivants :
 
 \section{Cahier des charges}
 
+And got so far
+
 \subsection{Besoins fonctionnels}
 
-Cette section décrit les besoins fonctionnels qui doivent être remplis par le
-module crée.
+\subsubsection{QT/OpenCV}
+-split une image
+-detection de bords
+-carte de disparitée
+-carte de profondeur
+-convertir une Qimage en cvMat et inverse
+-avoir une fenetre permettant de modifier une image avec les differentes fonctionnalitées implementées
 
-\subsection*{OpenCV et QT}
+\subsubsection{Unity}
 
-Cette première partie décrit les besoins fonctionnels relatifs à la partie OpenCV
-et QT du projet.
+-créer un environnement proche de la réalitée
+-Déplacer Bob dans l'environnement
+-Obtenir des images stereoscopiques proche du cas reel
 
-\subsubsection*{Split}
 
-Le module doit pouvoir séparer verticalement une image en deux images de même taille.
-
-\subsubsection*{Détection de bords}
-
-Le module doit pouvoir détecter et mettre en valeur les bords d'une image.
-
-\subsubsection*{Carte de disparité}
-
-Le module doit pouvoir calculer une carte de disparité à partir de deux images
-sources.
-
-\subsubsection*{Carte de profondeur}
-
-Le module doit pouvoir, à partir d'une carte de disparité, calculer une carte de
-profondeur.
-
-\subsubsection*{Conversion QImage/cv::Mat}
-
-Le module doit pouvoir convertir une image d'un format à l'autre.
-
-\subsection*{Unity}
-
-Cette deuxième partie décrit les besoins fonctionnels relatifs à la partie Unity
-du projet.
-
-\subsubsection*{Simulation}
-
-L'environnement Unity doit permettre d'obtenir des images stéréoscopiques.
-
-\subsection*{Robot}
-
-\subsubsection*{Carte de profondeur}
-
-Le robot doit pouvoir calculer une carte de profondeur à partir de deux images en
-entrée en utilisant le module crée.
-
-\subsubsection*{Estimer une distance}
-
-Le robot doit pouvoir obtenir une distance à partir d'une carte de profondeur.
-
-\subsubsection*{Déplacement}
-
-Le robot doit pouvoir avancer ou reculer en fonction d'une distance estimée.
-
-%-------------------------------------------------------------------------------
-% Besoins non fonctionnels
-%-------------------------------------------------------------------------------
+\subsubsection{Robot}
+-Traiter une image en carte de disparitée
+-ET C EST TOUT PARCEQU ON PEUT RIEN FAIRE SUR LE ROBOT
 
 \subsection{Besoins non fonctionnels}
 
-\subsection*{OpenCV et QT}
+\subsubsection{QT/Opencv}
+-robuste?
+-rapide?
 
-\subsubsection*{Robuste}
-
-Les distances estimées doivent être ordonnées de la même façon que les distances
-réelles, sous des conditions variables de luminosité, ombres ou mouvements.
-
-\subsubsection*{Rapide}
-
-L'estimation de la distance doit être suffisament rapide afin de suivre une personne
-marchant à vitesse normale (5km/h). Par manque de test, la rapidité n'est pas quantifiée.
-
-\subsubsection*{Unity}
+\subsubsection{Unity}
 
 
-\subsubsection*{Robot}
+\subsubsection{Robot}
 -Traiter x images/sec pour reduire les erreurs possibles
 -
 
@@ -312,12 +267,20 @@ Nous avons cependant testé toutes les fonctionnalitées que notre programme est
 
 \section{Problèmes rencontrés}
 
-\subsection{Carte de disparitée}
+
+\subsection*{Installation OpenCV}
+
+Lors des premières séances, nous avons eu des difficultés a installer OpenCV. En effet, utilisant les trois OS majeures(Windows, Mac, Linux), la procédure d'installaion n'était pas la même et nous n'avons pas pu nous aider les uns les autres facilement. Ceci a retardé un peu l'implémentation des fonctions OpenCV, et nous avons même abandonné l'installation sous Windows.
+
+\subsection*{Carte de disparité}
 
 Afin de traiter la carte de disparitée, nous avons dans un premier temps utiliser l'algorithme StereoBM. L'appel à celui-ci sur les images tests fournis par l'enseignant nous retournait un résultat satisfaisant lorsque nous n'utilisions aucun paramètre. Nous avons donc garder cette implémentation naive(pas sur pour cet adjectif) de StereoBM.
 
 Lorsque nous en avons du traiter les images issues du robot, les valeurs par défaut de cet algorithme ne nous donnait pas de résultat concluant. Nous avons donc eu besoin d'implémenter une variation des paramètre de StereoBM dans notre code, afin de mieux controller le résultat. Après avoir essayer pendant plusieurs séances d'améliorer les cartes de profondeur avec cette méthode, nous avons abandonner au profit de l'utilisation de SteroSGBM. Ces deux algorithmes étant similaire dans leur implémentation, nous n'avons pas eu besoin de beaucoup de temps pour adapter notre programme. Nous avons très rapidement obtenu un meilleur résultat avec beaucoup moins d'effort.
 
+\subsection*{Conversion d'images}
+
+Notre conversion d'images a encore des probèmes de source inconnues. En effet, lors de l'appel du split depuis l'interface graphique, les images ne sont pas traités et la fonction split affiche deux fois l'image de gauche. Cependant le split est le seul moment ou nous avont remarqué ce comportement.
 
 %-------------------------------------------------------------------------------
 % Conclusion
