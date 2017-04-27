@@ -220,7 +220,7 @@ les mettre en valeur. Le résultat obtenu sera stockée dans une autre image cv:
 dont l'adresse est donnée en tant que paramètre.
 
 
-La fonction \textbf{surfMath} fait la même chose mais avec 2 images en entrée,
+La fonction \textbf{surfMatch} fait la même chose mais avec 2 images en entrée,
 toujours de type cv::Mat. Elle va, en plus de la détection de points d'intérêts,
 effectuer une mise en correspondance des points d'intérêts entre eux. Le résultat
 obtenu sera stocké dans une cv::Mat de destination dont l'adresse est en paramètre
@@ -269,12 +269,22 @@ Une troisième partie très similaire à celle décrite plus haut, à la différ
 $ ./projet 1
 \end{minted}
 
-Enfin un dernier appel au programme peut être fait permettant de tester plusieurs valeurs de SAD  et de ... pour un image rentré dans le code. Celà nous a permis de faire des tests sur les valeurs optimales de StereoBM sur une certaine image, avant notre implémentation des trackbars. L'appel se fait par:
+Enfin un dernier appel au programme peut être fait permettant de tester plusieurs valeurs de SADWindowSize et de ndisparities pour une image rentrée dans le code. Celà nous a permis de faire des tests sur les valeurs optimales de StereoBM sur une certaine image, avant notre implémentation des trackbars. L'appel se fait par:
 \begin{minted}{bash}
 $ ./projet 2
 \end{minted}
 
+%%%%% SGBM %%%%%
+\subsubsection*{sgbm.cpp sgbm.h}
 
+Ces fichiers contiennent les deux fonctions permettant de créer l'interface dynamique
+de gestion des paramètres du calcul de carte de disparité. \\
+\textbf{dispSGBM :} Cette fonction charge des images sources en mémoire, initialise
+les paramètres de calcul de l'algorithme SGBM ainsi que les trackbars permettant de
+modifier dynamiquement les paramètres. \\
+\textbf{update :} Cette fonction permet de mettre à jour les paramètres lorsque
+l'utilisateur agit sur une des trackbars. Elle rafraichit également l'affichage des
+cartes de disparité.  
 
 %-------------------------------------------------------------------------------
 % Architecture du code Unity
