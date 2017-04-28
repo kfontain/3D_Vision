@@ -126,9 +126,6 @@ Le module doit pouvoir convertir une image d'un format à l'autre.
 
 \subsection*{Unity}
 
-Cette deuxième partie décrit les besoins fonctionnels relatifs à la partie Unity
-du projet.
-
 \subsubsection*{Simulation}
 
 L'environnement Unity doit permettre d'obtenir des images stéréoscopiques.
@@ -334,16 +331,47 @@ Voici la boucle principale du script :
 % Tests
 %-------------------------------------------------------------------------------
 
+\newpage
 \section{Tests}
 
-- ouvrir une image
-- détection de bords
-- split
-- depth/disp map
-- unity (scripts)
--
+\subsection*{Ouverture d'une image}
 
-I didn't went to Japan
+Pour ouvrir une image, il faut aller dans le menu \textbf{File} puis appuyer sur
+"Open File". \\[0.4cm]
+\centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/1.png}}
+
+Et le résultat : \\[0.4cm]
+\centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/2.png}}
+
+\subsection*{Conversion de format}
+
+Pour convertir une image, il faut en avoir une d'ouverte. Puis aller dans le menu
+\textbf{Edit} et cliquer sur "Convert test". Cette fonction va convertir l'image de
+base, chargée comme QImage, en cv::Mat puis la reconvertir en QImage avant de
+l'afficher. Cela permet de tester la conversion dans les deux sens.
+
+\subsection*{Split}
+
+Pour séparer une image en deux, il faut tout d'abord en avoir ouvert une. Puis
+aller dans le menu \textbf{Edit} et cliquer sur "Split test". \\
+Voici le résultat obtenu : \\[0.4cm]
+\centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/3.png}}
+
+\subsection*{Détection de bords}
+
+Pour effectuer une mise en valeur des bords d'une image, aller dans le menu
+\textbf{Edit} et cliquer sur \textbf{Sobel test}. \\
+Voici le résultat obtenu : \\[0.4cm]
+\centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/4.png}}
+
+\subsection*{Carte de disparité}
+
+Pour afficher une carte de disparité, il faut ouvrir une image. Puis, aller dans
+le menu \textbf{Edit} et appuyer sur "Disp map test". La séparation verticale est
+automatique, il n'est pas nécessaire de "split" l'image avant. \\
+Et le résultat : \\[0.4cm]
+\centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/5.png}}
+
 
 Nous n'avons pas écrit de fonction permettant de tester les différentes fonctionnalitées de notre programme, même si on peut assimiler les différents appel à notre programme avec les arguments "0", "1" ou "2" comme des tests pour les fonctionnalitées suivantes:
 \begin{itemize}
