@@ -36,7 +36,7 @@
 	\HRule \\ [0.5cm]
 }
 
-\author{Geoffrey MEILHAN \\ Mohamed ALAMI \\ Kenji FONTAINE}
+\author{Geoffrey MEILHAN \\ Mohamed ALAMI CHENTOUFI \\ Kenji FONTAINE}
 
 \begin{document}
 
@@ -230,6 +230,7 @@ partir de deux images cv::Mat en entrée. Elle fait appel à l'algorithme
 obtenue est stockée dans une image cv::Mat dont l'adresse est donnée en paramètre.
 
 %%%%% MAIN %%%%%
+\newpage
 \subsubsection*{main.cpp}
 
 Il s'agit du code exécuté lors du lancement du programme. On distingue 2 parties.
@@ -287,6 +288,7 @@ cartes de disparité.
 % Architecture du code Unity
 %-------------------------------------------------------------------------------
 
+\newpage
 \section{Architecture du code : partie Unity}
 
 \subsection*{move.cs}
@@ -357,6 +359,7 @@ aller dans le menu \textbf{Edit} et cliquer sur "Split test". \\
 Voici le résultat obtenu : \\[0.4cm]
 \centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/3.png}}
 
+\newpage
 \subsection*{Détection de bords}
 
 Pour effectuer une mise en valeur des bords d'une image, aller dans le menu
@@ -364,6 +367,7 @@ Pour effectuer une mise en valeur des bords d'une image, aller dans le menu
 Voici le résultat obtenu : \\[0.4cm]
 \centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/4.png}}
 
+\newpage
 \subsection*{Carte de disparité}
 
 Pour afficher une carte de disparité, il faut ouvrir une image. Puis, aller dans
@@ -372,26 +376,27 @@ automatique, il n'est pas nécessaire de "split" l'image avant. \\
 Et le résultat : \\[0.4cm]
 \centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/5.png}}
 
+\newpage
+\subsection*{Carte de disparité dynamique}
 
-Nous n'avons pas écrit de fonction permettant de tester les différentes fonctionnalitées de notre programme, même si on peut assimiler les différents appel à notre programme avec les arguments "0", "1" ou "2" comme des tests pour les fonctionnalitées suivantes:
-\begin{itemize}
-\item Ouvrir une image
-\item Convertir une Qimage en cvMat et l'opération inverse
-\item Split une image en deux images de même résolution afin de les traiter
-\item Obtenir une carte de disparitée
-\item Ouvrir une nouvelle fenetre
+Pour ouvrir l'interface dynamique de calcul de carte de disparité, aller dans le
+menu \textbf{Edit} et cliquer sur "SGBM test". Les images chargées sont codées en
+dur dans le code. Il n'est donc pas nécessaire d'avoir ouvert une image au préalable. \\
+Voici l'interface : \\[0.4cm]
 
-\end{itemize}
+\centerline{\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{img/6.png}}
 
+\subsection*{Robot}
 
-Nous avons cependant testé toutes les fonctionnalitées que notre programme est censé contenir dans le cahier des charges.
+N'ayant pas atteint un stade suffisament avancé du développement, aucun test n'a
+été effectué sur le robot.
 
 %-------------------------------------------------------------------------------
 % Problèmes rencontrés
 %-------------------------------------------------------------------------------
 
+\newpage
 \section{Problèmes rencontrés}
-
 
 \subsection*{Installation OpenCV}
 
