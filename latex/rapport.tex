@@ -292,7 +292,43 @@ cartes de disparité.
 
 \section{Architecture du code : partie Unity}
 
-But in the end
+\subsection*{move.cs}
+
+Ce script permet à l'objet auquel il est attaché de se déplacer dans une scène
+Unity en utilisant les flèches directionnelles. Par exemple, le code suivant est
+exécuté lorsque l'utilisateur appuie sur la flèche avant.
+\begin{minted}{csharp}
+	if (Input.GetKeyDown (KeyCode.UpArrow)) {
+		Vector3 position = this.transform.position;
+		position.y++;
+		this.transform.position = position;
+	}
+\end{minted}
+
+\subsection*{capture.cs}
+
+Pour que ce script fonctionne il faut qu'il y ait 3 objets avec les tags suivant :
+camera\_left, camera\_right, bob. Ce script est à attacher à n'importe quel objet
+d'une scène. Ce script va déplacer les objets et rendre en tant qu'image la vue des
+caméras. \\
+Dans notre simulation, camera\_left et camera\_right représentent nos caméras stéréo
+et bob représente un humain à une certaine distance de ces caméras. Le script
+permet de prendre des captures d'écran en faisant varier la distance entre les caméras
+ainsi que la distance caméras-humain. \\
+Voici la boucle principale du script :
+\begin{minted}{csharp}
+	for (int j = 0; j < 3; j++) {
+		for (int i = 0; i < 5; i++) {
+			// Render a picture and save it
+			move ("bob", 'z', 1); // Move object with tag "bob"
+		}
+		// reset bob to initial position and move each camera
+		reset ("bob", initial);
+		move ("camera_left" , 'x', -0.02f);
+		move ("camera_right", 'x',  0.02f);
+	}
+\end{minted}
+
 
 %-------------------------------------------------------------------------------
 % Tests
